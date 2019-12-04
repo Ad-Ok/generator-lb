@@ -122,7 +122,7 @@ module.exports = class Generator extends Base {
           name: 'feFramework',
           message: 'Please, choose frontend framework',
           choices: [{
-            name: 'Bootstrap 3 (jQuery3)',
+            name: 'Bootstrap 4 (jQuery3)',
             value: 'includeBootstrap'
           }, {
             name: 'Foundation 6 (jQuery2, Modernizr)',
@@ -276,7 +276,8 @@ module.exports = class Generator extends Base {
         this.dependencies = {};
 
         if (this.includeBootstrap) {
-          this.dependencies['bootstrap-sass'] = '~3.3.7';
+          this.dependencies['bootstrap'] = '^4.4.1';
+          this.dependencies['popper.js'] = '^1.14.1';
         }
 
         if (this.includeFoundation) {
@@ -288,7 +289,7 @@ module.exports = class Generator extends Base {
         }
 
         if (this.includejQuery3) {
-          this.dependencies.jquery = '~3.1.1';
+          this.dependencies.jquery = '^3.2.1';
         }
 
         if (this.includeLightingFly) {
@@ -330,6 +331,9 @@ module.exports = class Generator extends Base {
 
       mainStylesheet: function () {
         this.template('styles/_main.scss', 'app/styles/main.scss');
+        this.copy('styles/_variables.scss', 'app/styles/_variables.scss');
+        this.copy('styles/_mixins.scss', 'app/styles/_mixins.scss');
+        this.copy('styles/_layout.scss', 'app/styles/_layout.scss');
       },
 
       pug : function () {
@@ -397,6 +401,9 @@ module.exports = class Generator extends Base {
             this.log(chalk.cyan('Build project with: $ gulp build'));
             this.log(chalk.cyan('Help:               $ gulp help'));
             this.insight.track('install', 'done');
+            if (this.includeBootstrap) {
+
+            }
           }
         });
       } else {

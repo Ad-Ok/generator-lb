@@ -1,7 +1,16 @@
-<% if (includeBootstrap) { -%>
-$icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
-@import "bootstrap-sass/assets/stylesheets/_bootstrap";
+
+// variables
+<% if (includeBootstrap) { -%>
+@import "bootstrap/scss/functions";
+<% } -%>
+@import "variables";
+
+
+<% if (includeBootstrap) { -%>
+// libraries
+@import "bootstrap/scss/bootstrap";
 <% } -%>
 <% if (includeFoundation) { -%>
 @import './../../node_modules/foundation-sites/scss/foundation';
@@ -9,9 +18,18 @@ $icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @include foundation-everything;
 <% } -%>
 
+
+// mixins
+@import "mixins";
+
+
+// Layout
+@import "layout";
+
+
 .sample-intro {
   padding-top: 60px;
-  font-family: 'Helvetica Neue', Helvetica;
+  font-family: 'Open Sans', Helvetica;
   text-align: center;
 
   h1,
